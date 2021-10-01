@@ -4,11 +4,22 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var questionIndex = 0;
+
   void answerQuestion() {
-    debugPrint('Answer chosen!');
+    setState(() {
+      questionIndex++;
+    });
+
+    debugPrint('$questionIndex');
   }
 
   @override
@@ -25,18 +36,18 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text(questions[0]),
+            Text(questions.elementAt(questionIndex)),
             ElevatedButton(
               onPressed: answerQuestion,
               child: const Text('Answer 1'),
             ),
-            const ElevatedButton(
-              onPressed: null,
-              child: Text('Answer 2'),
+            ElevatedButton(
+              onPressed: answerQuestion,
+              child: const Text('Answer 2'),
             ),
-            const ElevatedButton(
-              onPressed: null,
-              child: Text('Answer 3'),
+            ElevatedButton(
+              onPressed: answerQuestion,
+              child: const Text('Answer 3'),
             ),
           ],
         ),
