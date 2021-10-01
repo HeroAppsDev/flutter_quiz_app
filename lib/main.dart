@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quiz_app/answer_button_widget.dart';
 import 'package:flutter_quiz_app/question_label_widget.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
       _questionIndex++;
     });
@@ -37,17 +38,14 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: [
             QuestionLabelWidget(questions: questions.elementAt(_questionIndex)),
-            ElevatedButton(
-              onPressed: answerQuestion,
-              child: const Text('Answer 1'),
+            AnswerButtonWidget(
+              onPressed: _answerQuestion,
             ),
-            ElevatedButton(
-              onPressed: answerQuestion,
-              child: const Text('Answer 2'),
+            AnswerButtonWidget(
+              onPressed: _answerQuestion,
             ),
-            ElevatedButton(
-              onPressed: answerQuestion,
-              child: const Text('Answer 3'),
+            AnswerButtonWidget(
+              onPressed: _answerQuestion,
             ),
           ],
         ),
