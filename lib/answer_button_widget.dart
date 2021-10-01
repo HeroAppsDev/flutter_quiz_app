@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class AnswerButtonWidget extends StatelessWidget {
   final VoidCallback onPressed; //void Function for Callback
-  const AnswerButtonWidget({Key? key, required this.onPressed})
+  final String answerText;
+  const AnswerButtonWidget(
+      {Key? key, required this.onPressed, required this.answerText})
       : super(key: key);
 
   @override
@@ -11,7 +13,7 @@ class AnswerButtonWidget extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: const Text('Answer 1'),
+        child: Text(answerText),
       ),
     );
   }

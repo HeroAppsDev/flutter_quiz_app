@@ -20,14 +20,28 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _questionIndex++;
     });
-    debugPrint('$_questionIndex');
+    debugPrint('## $_questionIndex');
   }
 
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'What\'s you favorite color?',
-      'What\'s your favorite food?',
+      {
+        'questionText': 'What\'s you favorite color?',
+        'answers': ['Blue', 'Black', 'Yellow', 'Red']
+      },
+      {
+        'questionText': 'What\'s your favorite food?',
+        'answers': ['Noodles', 'Soup', 'Meat', 'Vegetables']
+      },
+      {
+        'questionText': 'What\'s your favorite animal?',
+        'answers': ['Cat', 'Dog', 'Rabbit', 'Panda']
+      },
+      {
+        'questionText': 'What\'s your favorite place?',
+        'answers': ['Home', 'Outside', 'Club', 'Stadium']
+      },
     ];
     return MaterialApp(
       title: 'Flutter Demo',
@@ -37,16 +51,13 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            QuestionLabelWidget(questions: questions.elementAt(_questionIndex)),
-            AnswerButtonWidget(
-              onPressed: _answerQuestion,
-            ),
-            AnswerButtonWidget(
-              onPressed: _answerQuestion,
-            ),
-            AnswerButtonWidget(
-              onPressed: _answerQuestion,
-            ),
+            QuestionLabelWidget(
+                questions:
+                    questions[_questionIndex]['questionText'].toString()),
+            ...(questions[_questionIndex]['answers'] as List<String>)
+                .map((e) => AnswerButtonWidget(
+                    onPressed: _answerQuestion, answerText: e))
+                .toList(),
           ],
         ),
       ),
