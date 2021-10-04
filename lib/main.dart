@@ -98,6 +98,7 @@ class _MyAppState extends State<MyApp> {
                 resetHandler: _resetQuiz,
               ),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
